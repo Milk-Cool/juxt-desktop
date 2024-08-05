@@ -64,15 +64,16 @@ class JuxtAddon:
             if not TOKEN:
                 exit(1)
             lock = False
-        flow.request.headers["X-Nintendo-ParamPack"] = b64encode(bytes("\\language_id\\1\\platform_id\\1\\country_id\\1\\region_id\\" + str(REGION_ID) + "\\", "utf-8"))
-        flow.request.headers["X-Nintendo-ServiceToken"] = TOKEN
-        flow.request.headers["accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-        flow.request.headers["accept-encoding"] = "gzip, deflate"
-        flow.request.headers["accept-language"] = LANGUAGE
-        if flow.request.method == "POST":
-            flow.request.headers["content-type"] = "application/x-www-form-urlencoded"
-        # flow.request.headers["host"] = "portal.olv.pretendo.cc"
-        # flow.request.headers["origin"] = "https://portal.olv.pretendo.cc"
+        if "portal.olv.pretendo.cc" == flow.request.host:
+            flow.request.headers["X-Nintendo-ParamPack"] = b64encode(bytes("\\language_id\\1\\platform_id\\1\\country_id\\1\\region_id\\" + str(REGION_ID) + "\\", "utf-8"))
+            flow.request.headers["X-Nintendo-ServiceToken"] = TOKEN
+            flow.request.headers["accept"] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            flow.request.headers["accept-encoding"] = "gzip, deflate"
+            flow.request.headers["accept-language"] = LANGUAGE
+            if flow.request.method == "POST":
+                flow.request.headers["content-type"] = "application/x-www-form-urlencoded"
+            # flow.request.headers["host"] = "portal.olv.pretendo.cc"
+            # flow.request.headers["origin"] = "https://portal.olv.pretendo.cc"
         flow.request.headers["user-agent"] = "Mozilla/5.0 (Nintendo WiiU) AppleWebKit/536.28 (KHTML, like Gecko) NX/3.0.3.12.6 miiverse/3.1.prod.JP"
 
 addons = [JuxtAddon()]
