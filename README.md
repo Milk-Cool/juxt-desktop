@@ -14,16 +14,19 @@ git clone https://github.com/PretendoNetwork/Inkay.git
 docker run -it --rm -p 8082:8082 -v ./dumps:/home/mitmproxy/dumps ghcr.io/pretendonetwork/mitmproxy-nintendo:wiiu mitmdump
 ```
 DO NOT CLOSE IT UNTIL TOLD TO DO SO!
+
 4. In another window or tab, run the following:
 ```bash
 docker ps
 ```
 Make note of the container ID
+
 5. Run:
 ```bash
 docker cp CONTAINER_ID:/home/mitmproxy/.mitmproxy/mitmproxy-ca-cert.pem .
 ```
 (replace `CONTAINER_ID` with your container ID)
+
 6. Go to `Inkay/data`, and replace `ca.pem` with your `mitmproxy-ca-cert.pem`.
 7. Compile Inkay by running following commands in the parent directory of `Inkay`:
 ```bash
